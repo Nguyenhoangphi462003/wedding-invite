@@ -1,164 +1,134 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thiệp cưới Thùy Dương & Hoàng Phi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
-        body,html{height:100%;overflow-x:hidden; background:#000;}
-        /* Nền video */
-        .background{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden;}
-        #bg-video{width:100%;height:100%;object-fit:cover;}
-        .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);}
-        /* Màn chào */
-        .welcome{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;color:#fff;text-align:center;animation:fadeIn 2s ease;}
-        .welcome h1{font-family:'Great Vibes',cursive;font-size:4em;}
-        .welcome h2{font-size:2em;margin:10px 0;}
-        #enter-btn{margin-top:20px;padding:10px 30px;font-size:1em;cursor:pointer;background:#ff5e7e;color:#fff;border:none;border-radius:50px;transition:0.3s;}
-        #enter-btn:hover{background:#ff7e9e;}
-        /* Nội dung chính */
-        .main-content{display:none;color:#fff;text-align:center;padding:50px 20px;animation:fadeIn 2s ease forwards;position:relative;z-index:1;}
-        .couple h1{font-family:'Great Vibes',cursive;font-size:3em;margin-bottom:20px;}
-        .details{display:flex;justify-content:center;flex-wrap:wrap;margin:50px 0;}
-        .detail-item{background:rgba(255,255,255,0.1);padding:20px;margin:10px;border-radius:20px;min-width:200px;transition: transform 0.3s;}
-        .detail-item:hover{transform:scale(1.05);}
-        .gallery{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;}
-        .gallery-item{width:300px;overflow:hidden;border-radius:20px;transition:transform 0.3s;}
-        .gallery-item img{width:100%;display:block;}
-        .gallery-item:hover{transform:scale(1.05);}
-        .rsvp{margin-top:50px;}
-        .rsvp form{display:flex;flex-direction:column;align-items:center;}
-        .rsvp input{margin:10px 0;padding:10px;width:250px;border-radius:50px;border:none;outline:none;}
-        .rsvp button{padding:10px 30px;border-radius:50px;border:none;background:#ff5e7e;color:#fff;cursor:pointer;transition:0.3s;}
-        .rsvp button:hover{background:#ff7e9e;}
-        .countdown{font-size:2em;margin-top:20px;}
-
-        /* Hiệu ứng cánh hoa rơi */
-        .petal{
-            position:fixed;
-            top:-50px;
-            width:30px;
-            height:30px;
-            background-image:url('petal.png'); /* hình cánh hoa */
-            background-size:contain;
-            background-repeat:no-repeat;
-            opacity:0.8;
-            pointer-events:none;
-            animation-name:fall;
-            animation-timing-function:linear;
-            animation-iteration-count:infinite;
-        }
-        @keyframes fall{
-            0%{transform:translateY(0) rotate(0deg);}
-            100%{transform:translateY(110vh) rotate(360deg);}
-        }
-
-        @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-
-        @media(max-width:768px){
-            .details{flex-direction:column;}
-            .gallery-item{width:80%;}
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thiệp cưới Thùy Dương & Hoàng Phi</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
+body,html{height:100%;overflow-x:hidden;background:#fef6f0;} /* nền sáng */
+.background{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden;}
+#bg-video{width:100%;height:100%;object-fit:cover;}
+.overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.2);} /* overlay sáng */
+.welcome{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;color:#333;text-align:center;animation:fadeIn 2s ease;}
+.welcome h1{font-family:'Great Vibes',cursive;font-size:4em;}
+.welcome h2{font-size:2em;margin:10px 0;}
+#enter-btn{margin-top:20px;padding:10px 30px;font-size:1em;cursor:pointer;background:#ff5e7e;color:#fff;border:none;border-radius:50px;transition:0.3s;}
+#enter-btn:hover{background:#ff7e9e;}
+.main-content{display:none;color:#333;text-align:center;padding:50px 20px;animation:fadeIn 2s ease forwards;position:relative;z-index:1;}
+.couple h1{font-family:'Great Vibes',cursive;font-size:3em;margin-bottom:20px;}
+.details{display:flex;justify-content:center;flex-wrap:wrap;margin:50px 0;}
+.detail-item{background:rgba(255,255,255,0.6);color:#333;padding:20px;margin:10px;border-radius:20px;min-width:200px;transition: transform 0.3s;}
+.detail-item:hover{transform:scale(1.05);}
+.gallery{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;}
+.gallery-item{width:300px;overflow:hidden;border-radius:20px;transition:transform 0.3s;}
+.gallery-item img{width:100%;display:block;}
+.gallery-item:hover{transform:scale(1.05);}
+.rsvp{margin-top:50px;}
+.rsvp form{display:flex;flex-direction:column;align-items:center;}
+.rsvp input{margin:10px 0;padding:10px;width:250px;border-radius:50px;border:none;outline:none;}
+.rsvp button{padding:10px 30px;border-radius:50px;border:none;background:#ff5e7e;color:#fff;cursor:pointer;transition:0.3s;}
+.rsvp button:hover{background:#ff7e9e;}
+.countdown{font-size:2em;margin-top:20px;}
+.petal{position:fixed;top:-50px;width:30px;height:30px;background-image:url('petal.png');background-size:contain;background-repeat:no-repeat;opacity:0.8;pointer-events:none;animation-name:fall;animation-timing-function:linear;animation-iteration-count:infinite;}
+@keyframes fall{0%{transform:translateY(0) rotate(0deg);}100%{transform:translateY(110vh) rotate(360deg);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@media(max-width:768px){.details{flex-direction:column;}.gallery-item{width:80%;}}
+</style>
 </head>
 <body>
-    <!-- Nền video -->
-    <div class="background">
-        <video autoplay muted loop id="bg-video">
-            <source src="background.mp4" type="video/mp4">
-        </video>
-        <div class="overlay"></div>
-    </div>
+<div class="background">
+    <video autoplay muted loop id="bg-video">
+        <source src="background.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+</div>
 
-    <!-- Nhạc nền -->
-    <audio id="bg-music" src="wedding.mp3" autoplay loop></audio>
+<audio id="bg-music" src="wedding.mp3" autoplay loop></audio>
 
-    <!-- Màn chào -->
-    <div class="welcome" id="welcome">
-        <h1>Thiệp cưới</h1>
-        <h2>Thùy Dương & Hoàng Phi</h2>
-        <button id="enter-btn">Mở thiệp</button>
-    </div>
+<div class="welcome" id="welcome">
+    <h1>Thiệp cưới</h1>
+    <h2>Thùy Dương & Hoàng Phi</h2>
+    <button id="enter-btn">Mở thiệp</button>
+</div>
 
-    <!-- Nội dung chính -->
-    <div class="main-content" id="main-content">
-        <section class="couple">
-            <h1>Thùy Dương & Hoàng Phi</h1>
-            <p>Trân trọng kính mời bạn đến dự lễ cưới của chúng tôi.</p>
-            <div class="countdown" id="countdown"></div>
-        </section>
+<div class="main-content" id="main-content">
+    <section class="couple">
+        <h1>Thùy Dương & Hoàng Phi</h1>
+        <p>Trân trọng kính mời bạn đến dự lễ cưới của chúng tôi.</p>
+        <div class="countdown" id="countdown"></div>
+    </section>
 
-        <section class="details">
-            <div class="detail-item">
-                <h2>Thời gian</h2>
-                <p>10:00 sáng, ngày 20/01/2026</p>
-            </div>
-            <div class="detail-item">
-                <h2>Địa điểm</h2>
-                <p>Nhà hàng Hoàng Gia, Hà Nội</p>
-            </div>
-        </section>
+    <section class="details">
+        <div class="detail-item">
+            <h2>Thời gian</h2>
+            <p>10:00 sáng, ngày 20/01/2026</p>
+        </div>
+        <div class="detail-item">
+            <h2>Địa điểm</h2>
+            <p>Nhà hàng Hoàng Gia, Hà Nội</p>
+        </div>
+    </section>
 
-        <section class="gallery">
-            <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nguyenhoangphi462003/wedding-invite/main/11fa1b7f-a68c-46d9-815a-726233053f6b.jpg" alt="Ảnh kỷ niệm"></div>
-            <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nguyenhoangphi462003/wedding-invite/main/33854839-73fb-43c8-aad6-c639b245b34c.jpg" alt="Ảnh kỷ niệm"></div>
-            <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nguyenhoangphi462003/wedding-invite/main/95667064-9bb6-4078-8922-92452c14380e.jpg" alt="Ảnh kỷ niệm"></div>
-        </section>
+    <section class="gallery">
+        <div class="gallery-item"><img src="img1.jpg" alt="Ảnh kỷ niệm"></div>
+        <div class="gallery-item"><img src="img2.jpg" alt="Ảnh kỷ niệm"></div>
+        <div class="gallery-item"><img src="img3.jpg" alt="Ảnh kỷ niệm"></div>
+    </section>
 
-        <section class="rsvp">
-            <h2>Xác nhận tham dự</h2>
-            <form>
-                <input type="text" placeholder="Tên của bạn" required>
-                <input type="number" placeholder="Số lượng khách" required>
-                <button type="submit">Gửi</button>
-            </form>
-        </section>
-    </div>
+    <section class="rsvp">
+        <h2>Xác nhận tham dự</h2>
+        <form>
+            <input type="text" placeholder="Tên của bạn" required>
+            <input type="number" placeholder="Số lượng khách" required>
+            <button type="submit">Gửi</button>
+        </form>
+    </section>
+</div>
 
-    <script>
-        const enterBtn = document.getElementById('enter-btn');
-        const welcome = document.getElementById('welcome');
-        const mainContent = document.getElementById('main-content');
-        const bgMusic = document.getElementById('bg-music');
+<script>
+const enterBtn = document.getElementById('enter-btn');
+const welcome = document.getElementById('welcome');
+const mainContent = document.getElementById('main-content');
+const bgMusic = document.getElementById('bg-music');
 
-        enterBtn.addEventListener('click', () => {
-            welcome.style.display = 'none';
-            mainContent.style.display = 'block';
-            bgMusic.play();
-        });
+enterBtn.addEventListener('click', ()=>{
+    welcome.style.display='none';
+    mainContent.style.display='block';
+    bgMusic.play();
+});
 
-        // Đếm ngược tới ngày cưới
-        const countdown = document.getElementById('countdown');
-        const weddingDate = new Date("January 20, 2026 10:00:00").getTime();
-        function updateCountdown(){
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-            if(distance < 0){
-                countdown.innerHTML = "Chúng tôi đã kết hôn! 🎉";
-                clearInterval(timer);
-                return;
-            }
-            const days = Math.floor(distance/(1000*60*60*24));
-            const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-            const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
-            const seconds = Math.floor((distance%(1000*60))/1000);
-            countdown.innerHTML = `Còn ${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây`;
-        }
-        const timer = setInterval(updateCountdown,1000);
-        updateCountdown();
+// Đếm ngược tới ngày cưới
+const countdown = document.getElementById('countdown');
+const weddingDate = new Date("January 20, 2026 10:00:00").getTime();
+function updateCountdown(){
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+    if(distance<0){
+        countdown.innerHTML="Chúng tôi đã kết hôn! 🎉";
+        clearInterval(timer);
+        return;
+    }
+    const days = Math.floor(distance/(1000*60*60*24));
+    const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+    const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+    const seconds = Math.floor((distance%(1000*60))/1000);
+    countdown.innerHTML=`Còn ${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây`;
+}
+const timer=setInterval(updateCountdown,1000);
+updateCountdown();
 
-        // Tạo cánh hoa rơi
-        const numPetals = 30; // số cánh hoa
-        for(let i=0;i<numPetals;i++){
-            const petal = document.createElement('div');
-            petal.classList.add('petal');
-            petal.style.left = Math.random()*100 + 'vw';
-            petal.style.animationDuration = 5+Math.random()*5+'s';
-            petal.style.opacity = 0.5 + Math.random()*0.5;
-            document.body.appendChild(petal);
-        }
-    </script>
+// Cánh hoa rơi
+const numPetals = 30;
+for(let i=0;i<numPetals;i++){
+    const petal=document.createElement('div');
+    petal.classList.add('petal');
+    petal.style.left=Math.random()*100+'vw';
+    petal.style.animationDuration=5+Math.random()*5+'s';
+    petal.style.opacity=0.5+Math.random()*0.5;
+    document.body.appendChild(petal);
+}
+</script>
 </body>
 </html>

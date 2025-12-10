@@ -1,94 +1,174 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Thiệp cưới - Hoàng Phi & Thùy Dương</title>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thiệp Cưới - Hoàng Phi & Thùy Dương</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap');
+
     body {
-        margin: 0;
-        font-family: 'Times New Roman', serif;
-        background: url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1200&q=80') no-repeat center/cover;
-        color: #fff;
-        text-align: center;
+      margin: 0;
+      padding: 0;
+      background: #000;
+      overflow: hidden;
+      font-family: 'Playfair Display', serif;
     }
+
+    /* NỀN VIDEO giống ZiuWedding */
+    #bgVideo {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      filter: brightness(0.55);
+    }
+
+    /* LỚP MỜ */
     .overlay {
-        background: rgba(0,0,0,0.5);
-        position: fixed;
-        inset: 0;
+      position: fixed;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(1px);
+      z-index: -1;
     }
-    .content {
-        position: relative;
-        z-index: 2;
-        padding: 40px 20px;
-        margin-top: 100px;
+
+    /* PHẦN TRUNG TÂM */
+    .center-box {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      animation: fadeIn 2s ease;
     }
-    h1 {
-        font-size: 40px;
-        font-weight: bold;
-        margin-bottom: 10px;
+
+    .center-box h1 {
+      font-size: 55px;
+      margin: 0;
+      font-family: 'Great Vibes', cursive;
+      letter-spacing: 3px;
     }
-    h3 {
-        font-size: 22px;
-        margin-top: 0;
+
+    .center-box h2 {
+      font-size: 22px;
+      margin-top: 10px;
+      font-weight: 300;
     }
-    .btn {
-        background: #ffccd8;
-        color: #000;
-        padding: 12px 25px;
-        border-radius: 30px;
-        display: inline-block;
-        margin-top: 25px;
-        cursor: pointer;
-        font-weight: bold;
+
+    .open-btn {
+      margin-top: 30px;
+      padding: 14px 32px;
+      border-radius: 30px;
+      font-size: 20px;
+      font-weight: 500;
+      background: rgba(255,255,255,0.8);
+      border: none;
+      cursor: pointer;
+      transition: .3s;
     }
-    .modal-bg {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.7);
-        justify-content: center;
-        align-items: center;
+
+    .open-btn:hover {
+      background: white;
+      transform: scale(1.05);
     }
-    .modal {
-        background: #fff;
-        padding: 20px;
-        width: 80%;
-        max-width: 350px;
-        color: #000;
-        border-radius: 10px;
-        text-align: left;
+
+    @keyframes fadeIn {
+      0% {opacity: 0;} 100% {opacity: 1;}
     }
-</style>
+
+    /* TRÁI TIM BAY giống ZiuWedding */
+    .heart {
+      position: fixed;
+      width: 18px;
+      height: 18px;
+      background: #ff5e7e;
+      transform: rotate(45deg);
+      animation: floatUp 4s linear forwards;
+      opacity: 0.8;
+    }
+
+    .heart:before, .heart:after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: #ff5e7e;
+      border-radius: 50%;
+    }
+    .heart:before { top: -9px; left: 0; }
+    .heart:after { left: -9px; top: 0; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-900px) rotate(45deg); opacity: 0; }
+    }
+
+    /* TRANG THIỆP BÊN TRONG */
+    #inside {
+      display: none;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(3px);
+      color: white;
+      animation: fadeIn 1.2s ease;
+      text-align: center;
+      padding-top: 120px;
+    }
+
+    #inside h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 50px;
+      margin-bottom: 10px;
+    }
+
+  </style>
 </head>
 <body>
 
+<!-- VIDEO NỀN GIỐNG ZIU -->
+<video autoplay muted loop id="bgVideo">
+  <source src="https://videos.pexels.com/video-files/854427/854427-hd_1280_720_24fps.mp4" type="video/mp4">
+</video>
+
 <div class="overlay"></div>
 
-<div class="content">
-    <h1>Hoàng Phi ❤️ Thùy Dương</h1>
-    <h3>Trân trọng kính mời bạn đến dự lễ thành hôn</h3>
-    <h3>Ngày 20 - 12 - 2025</h3>
-
-    <div class="btn" onclick="openModal()">Xác nhận tham dự</div>
+<!-- TRANG BÌA -->
+<div class="center-box" id="cover">
+  <h2>Wedding Invitation</h2>
+  <h1>Hoàng Phi & Thùy Dương</h1>
+  <button class="open-btn" onclick="openInvite()">Mở thiệp</button>
 </div>
 
-<div class="modal-bg" id="modalBg">
-    <div class="modal">
-        <h3>Xác nhận tham dự</h3>
-        <p>Bạn có thể nhắn tin trực tiếp cho chú rể nhé:</p>
-        <p><b>📞 0362 525 636</b></p>
-        <div class="btn" onclick="closeModal()">Đóng</div>
-    </div>
+<!-- TRANG NỘI DUNG -->
+<div id="inside">
+  <h2>Trân trọng kính mời</h2>
+  <p>Bạn đến dự buổi lễ thành hôn của chúng tôi</p>
+  <h1 style="font-family:'Great Vibes',cursive; font-size:60px;">Hoàng Phi & Thùy Dương</h1>
+  <p>⏰ 09:00 - 12/12/2025</p>
+  <p>📍 Hội trường Hoa Sen</p>
 </div>
 
 <script>
-function openModal() {
-    document.getElementById("modalBg").style.display = "flex";
+function openInvite() {
+  document.getElementById('cover').style.display = 'none';
+  document.getElementById('inside').style.display = 'block';
 }
-function closeModal() {
-    document.getElementById("modalBg").style.display = "none";
-}
+
+// HIỆU ỨNG TRÁI TIM GIỐNG ZIU WEDDING
+setInterval(() => {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.style.left = Math.random() * window.innerWidth + 'px';
+  heart.style.bottom = '-20px';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 4000);
+}, 300);
 </script>
 
 </body>

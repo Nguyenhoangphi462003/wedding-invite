@@ -5,40 +5,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thiệp cưới Thùy Dương & Hoàng Phi</title>
 
-<!-- Open Graph -->
+<!-- Open Graph: hiển thị ảnh + tiêu đề trên link -->
 <meta property="og:title" content="Thiệp cưới Thùy Dương & Hoàng Phi">
 <meta property="og:description" content="Trân trọng kính mời bạn đến dự lễ cưới của chúng tôi.">
 <meta property="og:image" content="https://yourdomain.com/thumbnail.jpg">
 <meta property="og:type" content="website">
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
-body,html{height:100%;overflow-x:hidden;background:#fef6f0;}
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;}
+body,html{height:100%;overflow-x:hidden;font-family:'Roboto',sans-serif;background:#fef6f0;}
+a{text-decoration:none;color:inherit;}
+
+/* BACKGROUND */
 .background{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden;}
-#bg-video{width:100%;height:100%;object-fit:cover;}
+#bg-video{width:100%;height:100%;object-fit:cover;opacity:0.3;}
 .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,0.2);}
+
+/* WELCOME SCREEN */
 .welcome{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;color:#333;text-align:center;animation:fadeIn 2s ease;}
-.welcome h1{font-family:'Great Vibes',cursive;font-size:4em;}
+.welcome h1{font-family:'Great Vibes',cursive;font-size:4em;color:#ff5e7e;text-shadow:2px 2px 5px rgba(0,0,0,0.2);}
 .welcome h2{font-size:2em;margin:10px 0;}
 #guest-name{font-size:1.5em;margin-top:10px;color:#ff5e7e;}
-#enter-btn{margin-top:20px;padding:10px 30px;font-size:1em;cursor:pointer;background:#ff5e7e;color:#fff;border:none;border-radius:50px;transition:0.3s;}
-#enter-btn:hover{background:#ff7e9e;}
-.main-content{display:none;color:#333;text-align:center;padding:50px 20px;animation:fadeIn 2s ease forwards;position:relative;z-index:1;}
-.couple h1{font-family:'Great Vibes',cursive;font-size:3em;margin-bottom:20px;}
+#enter-btn{margin-top:20px;padding:10px 40px;font-size:1.2em;cursor:pointer;background:#ff5e7e;color:#fff;border:none;border-radius:50px;transition:0.3s;box-shadow:0 4px 10px rgba(0,0,0,0.2);}
+#enter-btn:hover{background:#ff7e9e;transform:scale(1.05);}
+
+/* MAIN CONTENT */
+.main-content{display:none;text-align:center;color:#333;padding:50px 20px;animation:fadeIn 2s ease forwards;position:relative;z-index:1;}
+.couple h1{font-family:'Great Vibes',cursive;font-size:3em;margin-bottom:20px;color:#ff5e7e;}
 .details{display:flex;justify-content:center;flex-wrap:wrap;margin:50px 0;}
-.detail-item{background:rgba(255,255,255,0.6);color:#333;padding:20px;margin:10px;border-radius:20px;min-width:200px;transition: transform 0.3s;}
-.detail-item:hover{transform:scale(1.05);}
+.detail-item{background:rgba(255,255,255,0.6);color:#333;padding:20px;margin:10px;border-radius:20px;min-width:200px;transition: transform 0.3s, box-shadow 0.3s;}
+.detail-item:hover{transform:scale(1.05);box-shadow:0 10px 20px rgba(0,0,0,0.2);}
 .gallery{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;}
-.gallery-item{width:300px;overflow:hidden;border-radius:20px;transition:transform 0.3s;}
+.gallery-item{width:300px;overflow:hidden;border-radius:20px;transition:transform 0.3s,box-shadow 0.3s;}
 .gallery-item img{width:100%;display:block;}
-.gallery-item:hover{transform:scale(1.05);}
+.gallery-item:hover{transform:scale(1.05);box-shadow:0 10px 20px rgba(0,0,0,0.2);}
 .rsvp{margin-top:50px;}
 .rsvp form{display:flex;flex-direction:column;align-items:center;}
-.rsvp input{margin:10px 0;padding:10px;width:250px;border-radius:50px;border:none;outline:none;}
-.rsvp button{padding:10px 30px;border-radius:50px;border:none;background:#ff5e7e;color:#fff;cursor:pointer;transition:0.3s;}
-.rsvp button:hover{background:#ff7e9e;}
-.countdown{font-size:2em;margin-top:20px;}
+.rsvp input{margin:10px 0;padding:10px;width:250px;border-radius:50px;border:none;outline:none;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+.rsvp button{padding:10px 40px;border-radius:50px;border:none;background:#ff5e7e;color:#fff;cursor:pointer;transition:0.3s;box-shadow:0 4px 10px rgba(0,0,0,0.2);}
+.rsvp button:hover{background:#ff7e9e;transform:scale(1.05);}
+.countdown{font-size:2em;margin-top:20px;color:#ff5e7e;}
 .petal{position:fixed;top:-50px;width:30px;height:30px;background-image:url('petal.png');background-size:contain;background-repeat:no-repeat;opacity:0.8;pointer-events:none;animation-name:fall;animation-timing-function:linear;animation-iteration-count:infinite;}
 @keyframes fall{0%{transform:translateY(0) rotate(0deg);}100%{transform:translateY(110vh) rotate(360deg);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
@@ -46,10 +55,13 @@ body,html{height:100%;overflow-x:hidden;background:#fef6f0;}
 .social a{display:inline-block;width:50px;height:50px;}
 .social img{width:100%;height:100%;object-fit:contain;}
 .music-btn{position:fixed;top:20px;right:20px;width:50px;height:50px;cursor:pointer;z-index:10;}
+
+/* RESPONSIVE */
 @media(max-width:768px){.details{flex-direction:column;}.gallery-item{width:80%;}}
 </style>
 </head>
 <body>
+
 <div class="background">
     <video autoplay muted loop id="bg-video">
         <source src="background.mp4" type="video/mp4">
@@ -57,14 +69,14 @@ body,html{height:100%;overflow-x:hidden;background:#fef6f0;}
     <div class="overlay"></div>
 </div>
 
-<!-- Nhạc nền welcome -->
+<!-- Nhạc nền -->
 <audio id="bg-music1" src="wedding.mp3" autoplay loop></audio>
-<!-- Nhạc nền khi mở thiệp -->
 <audio id="bg-music2" src="wedding2.mp3" loop></audio>
 
-<!-- Nút bật/tắt nhạc -->
-<img src="sound-on.png" alt="Music" id="music-btn" class="music-btn">
+<!-- Nút nhạc -->
+<img src="sound-on.png" id="music-btn" class="music-btn" alt="Music">
 
+<!-- WELCOME SCREEN -->
 <div class="welcome" id="welcome">
     <h1>Thiệp cưới</h1>
     <h2>Thùy Dương & Hoàng Phi</h2>
@@ -72,6 +84,7 @@ body,html{height:100%;overflow-x:hidden;background:#fef6f0;}
     <button id="enter-btn">Mở thiệp</button>
 </div>
 
+<!-- MAIN CONTENT -->
 <div class="main-content" id="main-content">
     <section class="couple">
         <h1>Thùy Dương & Hoàng Phi</h1>
@@ -91,9 +104,9 @@ body,html{height:100%;overflow-x:hidden;background:#fef6f0;}
     </section>
 
     <section class="gallery">
- <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nguyenhoangphi462003/wedding-invite/main/95667064-9bb6-4078-8922-92452c14380e.jpg" alt="Ảnh kỷ niệm"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nguyenhoangphi462003/wedding-invite/main/95667064-9bb6-4078-8922-92452c14380e.jpg" alt="Ảnh kỷ niệm"></div>
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nguyenhoangphi462003/wedding-invite/main/95667064-9bb6-4078-8922-92452c14380e.jpg" alt="Ảnh kỷ niệm"></div>
+        <div class="gallery-item"><img src="img1.jpg" alt="Ảnh kỷ niệm"></div>
+        <div class="gallery-item"><img src="img2.jpg" alt="Ảnh kỷ niệm"></div>
+        <div class="gallery-item"><img src="img3.jpg" alt="Ảnh kỷ niệm"></div>
     </section>
 
     <section class="rsvp">
@@ -106,8 +119,8 @@ body,html{height:100%;overflow-x:hidden;background:#fef6f0;}
     </section>
 
     <section class="social">
-       <a href="https://www.facebook.com/hphi46.203" target="_blank"><img src="zalo.png" alt="Zalo"></a>
-        <a href="https://www.facebook.com/hphi46.203" target="_blank"><img src="fb.png" alt="Facebook"></a>
+        <a href="https://zalo.me/xxxxxxxxx" target="_blank"><img src="zalo.png" alt="Zalo"></a>
+        <a href="https://facebook.com/yourpage" target="_blank"><img src="fb.png" alt="Facebook"></a>
     </section>
 </div>
 
@@ -169,7 +182,6 @@ for(let i=0;i<numPetals;i++){
 
 // Nút bật/tắt nhạc
 const musicBtn = document.getElementById('music-btn');
-let musicPlaying = true; // true = nhạc thứ 2 đang chạy
 musicBtn.addEventListener('click', ()=>{
     if(bgMusic2.paused){
         bgMusic2.play();
@@ -180,5 +192,6 @@ musicBtn.addEventListener('click', ()=>{
     }
 });
 </script>
+
 </body>
 </html>

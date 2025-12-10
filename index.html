@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Thiệp cưới - Hoàng Phi & Thùy Dương</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Times New Roman', serif;
+        background: url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1200&q=80') no-repeat center/cover;
+        color: #fff;
+        text-align: center;
+    }
+    .overlay {
+        background: rgba(0,0,0,0.5);
+        position: fixed;
+        inset: 0;
+    }
+    .content {
+        position: relative;
+        z-index: 2;
+        padding: 40px 20px;
+        margin-top: 100px;
+    }
+    h1 {
+        font-size: 40px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    h3 {
+        font-size: 22px;
+        margin-top: 0;
+    }
+    .btn {
+        background: #ffccd8;
+        color: #000;
+        padding: 12px 25px;
+        border-radius: 30px;
+        display: inline-block;
+        margin-top: 25px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .modal-bg {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.7);
+        justify-content: center;
+        align-items: center;
+    }
+    .modal {
+        background: #fff;
+        padding: 20px;
+        width: 80%;
+        max-width: 350px;
+        color: #000;
+        border-radius: 10px;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<div class="content">
+    <h1>Hoàng Phi ❤️ Thùy Dương</h1>
+    <h3>Trân trọng kính mời bạn đến dự lễ thành hôn</h3>
+    <h3>Ngày 20 - 12 - 2025</h3>
+
+    <div class="btn" onclick="openModal()">Xác nhận tham dự</div>
+</div>
+
+<div class="modal-bg" id="modalBg">
+    <div class="modal">
+        <h3>Xác nhận tham dự</h3>
+        <p>Bạn có thể nhắn tin trực tiếp cho chú rể nhé:</p>
+        <p><b>📞 0362 525 636</b></p>
+        <div class="btn" onclick="closeModal()">Đóng</div>
+    </div>
+</div>
+
+<script>
+function openModal() {
+    document.getElementById("modalBg").style.display = "flex";
+}
+function closeModal() {
+    document.getElementById("modalBg").style.display = "none";
+}
+</script>
+
+</body>
+</html>

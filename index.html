@@ -1,149 +1,223 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Thiệp cưới Hoàng Phi ❤️ Thùy Dương</title>
-
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+<title>Thiệp cưới — Hoàng Phi & Thùy Dương</title>
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-        font-family: 'Arial', sans-serif;
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        background-image: url('YOUR_BACKGROUND_IMAGE.jpg'); /* ← Thay ảnh nền */
-    }
+  :root{
+    --pink:#ff9ecf;
+    --accent:#ff4da6;
+    --glass: rgba(255,255,255,0.12);
+  }
+  html,body{height:100%;margin:0;font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+  body{
+    background: var(--pink);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    color:#111;
+  }
 
-    /* LỚP LÀM TỐI NỀN CHO ĐẸP */
-    .overlay {
-        background: rgba(255, 182, 193, 0.25);
-        backdrop-filter: blur(2px);
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        z-index: 1;
-        top: 0; left: 0;
-    }
+  /* Nền ảnh full */
+  #bg{
+    position:fixed;inset:0;
+    background-image: url('background.jpg');
+    background-size:cover;
+    background-position:center;
+    filter:brightness(0.6);
+    z-index:-3;
+  }
+  /* lớp phủ hồng mờ */
+  #veil{
+    position:fixed;inset:0;
+    background: linear-gradient(180deg, rgba(255,182,193,0.20), rgba(255,182,193,0.30));
+    backdrop-filter: blur(3px);
+    z-index:-2;
+  }
 
-    /* TIÊU ĐỀ TRUNG TÂM */
-    .title {
-        position: relative;
-        z-index: 2;
-        text-align: center;
-        padding-top: 60px;
-        color: #ff2e76;
-        font-size: 38px;
-        font-weight: bold;
-        text-shadow: 0 0 10px white;
-    }
+  /* container chính */
+  .wrap{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:28px;padding:48px 18px 120px;}
 
-    /* GALERRY ẢNH CƯỚI */
-    .gallery {
-        margin-top: 40px;
-        display: flex;
-        gap: 20px;
-        overflow-x: scroll;
-        padding: 20px;
-        scroll-snap-type: x mandatory;
-        z-index: 2;
-        position: relative;
-    }
-    .gallery img {
-        width: 280px;
-        height: 380px;
-        object-fit: cover;
-        border-radius: 15px;
-        box-shadow: 0 0 10px #ff4fa8;
-        scroll-snap-align: center;
-    }
+  /* header kiểu Ziu */
+  .intro{
+    width:100%;max-width:760px;text-align:center;color:#fff;
+    -webkit-text-size-adjust:none;
+  }
+  .small{font-size:13px;opacity:0.9;letter-spacing:1px}
+  .title{font-family:'Playfair Display',serif;font-size:44px;margin:8px 0 6px;color:#fff;text-shadow:0 6px 22px rgba(0,0,0,0.35)}
+  .couple{font-size:18px;color: #fff;opacity:0.95}
 
-    /* TIM RƠI */
-    .heart {
-        position: fixed;
-        top: -10px;
-        color: #ff2e76;
-        font-size: 20px;
-        animation: fall 4s linear infinite;
-        z-index: 3;
-    }
-    @keyframes fall {
-        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-    }
+  /* nút mở thiệp */
+  .open-btn{
+    margin-top:14px;
+    background: linear-gradient(90deg,var(--accent), #ff8ab8);
+    color:white;border:0;padding:12px 26px;border-radius:28px;font-weight:600;box-shadow:0 8px 30px rgba(255,77,166,0.18);
+  }
 
-    /* NÚT PHÁT NHẠC */
-    #musicBtn {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        padding: 14px 18px;
-        background: #ff70b8;
-        border-radius: 50px;
-        color: white;
-        font-size: 18px;
-        border: none;
-        z-index: 5;
-        box-shadow: 0 0 10px white;
-    }
+  /* sections kéo dài */
+  section.panel{width:100%;max-width:900px;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));border-radius:18px;padding:28px;margin:12px 0;box-shadow:0 10px 30px rgba(2,6,23,0.35);backdrop-filter: blur(6px);color:#fff}
+  section h2{margin:6px 0 10px;font-size:22px}
+  section p{opacity:0.95;line-height:1.6;font-size:16px}
 
+  /* gallery ngang giống app */
+  .gallery{
+    display:flex;gap:14px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+  }
+  .gallery img{width:72vw;max-width:360px;height:480px;object-fit:cover;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,0.45);scroll-snap-align:center;flex:0 0 auto}
+
+  /* nhạc button */
+  #musicBtn{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.92);display:flex;align-items:center;justify-content:center;font-size:22px;border:0;box-shadow:0 8px 30px rgba(0,0,0,0.25);z-index:999}
+  #musicBtn.on{background:linear-gradient(90deg,var(--accent), #ff8ab8);color:#fff}
+
+  /* hearts */
+  .heart{
+    position:fixed;top:-40px;font-size:18px;color:var(--accent);z-index:5;opacity:0.95;
+    transform:rotate(45deg);
+    pointer-events:none;
+    animation:fall linear forwards;
+  }
+  @keyframes fall{
+    0%{transform:translateY(-10vh) rotate(0deg);opacity:1}
+    100%{transform:translateY(110vh) rotate(360deg);opacity:0}
+  }
+
+  /* responsive mobile */
+  @media (max-width:480px){
+    .title{font-size:34px}
+    .gallery img{height:420px}
+    .wrap{padding:36px 14px 110px}
+    section.panel{padding:18px}
+    .open-btn{padding:10px 20px}
+  }
 </style>
 </head>
 <body>
 
-<div class="overlay"></div>
+<div id="bg"></div>
+<div id="veil"></div>
 
-<h1 class="title">💗 Hoàng Phi & Thùy Dương 💗</h1>
+<div class="wrap" id="main">
+  <!-- Intro / cover giống Ziu -->
+  <div class="intro" id="cover">
+    <div class="small">Wedding Invitation</div>
+    <div class="title">Hoàng Phi &amp; Thùy Dương</div>
+    <div class="couple">Trân trọng kính mời bạn đến dự lễ thành hôn</div>
+    <button class="open-btn" id="openBtn">Mở thiệp</button>
+  </div>
 
-<!-- 5 ẢNH CƯỚI (THAY LINK ẢNH Ở ĐÂY) -->
-<div class="gallery">
-    <img src="https://i.imgur.com/8b1WQ4E.jpeg">
-    <img src="https://i.imgur.com/IR3M3Am.jpeg">
-    <img src="https://i.imgur.com/1YcIngO.jpeg">
-    <img src="https://i.imgur.com/kE5zWcY.jpeg">
-    <img src="https://i.imgur.com/7rQbV3z.jpeg">
+  <!-- Nội dung chính (ẩn ban đầu) -->
+  <div id="content" style="display:none;width:100%;max-width:900px;">
+    <!-- Panel 1: Lời mời -->
+    <section class="panel">
+      <h2>Trân trọng kính mời</h2>
+      <p>Chúng tôi trân trọng kính mời bạn đến chung vui cùng gia đình trong buổi lễ thành hôn của chúng tôi.</p>
+    </section>
+
+    <!-- Panel 2: Gallery (5 ảnh cưới) -->
+    <section class="panel">
+      <h2>Album ảnh</h2>
+      <div class="gallery" id="gallery">
+        <img src="photo1.jpg" alt="photo1">
+        <img src="photo2.jpg" alt="photo2">
+        <img src="photo3.jpg" alt="photo3">
+        <img src="photo4.jpg" alt="photo4">
+        <img src="photo5.jpg" alt="photo5">
+      </div>
+    </section>
+
+    <!-- Panel 3: Thời gian & địa điểm -->
+    <section class="panel">
+      <h2>Thời gian & Địa điểm</h2>
+      <p>⏰ 09:00 — Ngày 12 / 12 / 2025<br>📍 Nhà hàng Hoa Sen, Hà Nội</p>
+    </section>
+
+    <!-- Panel 4: Lời cảm ơn / footer -->
+    <section class="panel">
+      <h2>Rất mong gặp bạn</h2>
+      <p>Cảm ơn bạn đã luôn yêu thương và ủng hộ. Hẹn gặp bạn tại lễ cưới!</p>
+    </section>
+  </div>
 </div>
 
-<!-- NHẠC ĐÁM CƯỚI -->
-<audio id="bgm" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6f258f7d73.mp3" type="audio/mpeg">
+<!-- Nhạc -->
+<audio id="music" loop>
+  <!-- Bạn có thể thay đường dẫn nhạc ở đây -->
+  <source src="wedding-music.mp3" type="audio/mpeg">
 </audio>
 
-<button id="musicBtn">🎵 Play</button>
+<!-- Nút nhạc (iOS cần bấm để mở âm thanh) -->
+<button id="musicBtn" title="Play/Pause">🎶</button>
 
 <script>
-/* PHÁT / TẮT NHẠC */
-let music = document.getElementById("bgm");
-let btn = document.getElementById("musicBtn");
-let playing = false;
+/* show content khi mở thiệp */
+const openBtn = document.getElementById('openBtn');
+const cover = document.getElementById('cover');
+const content = document.getElementById('content');
+const music = document.getElementById('music');
+const musicBtn = document.getElementById('musicBtn');
 
-btn.onclick = function () {
-    if (!playing) {
-        music.play();
-        btn.innerText = "⏸ Pause";
-        playing = true;
-    } else {
-        music.pause();
-        btn.innerText = "🎵 Play";
-        playing = false;
-    }
-};
+openBtn.addEventListener('click', ()=>{
+  // 1) ẩn cover, hiện nội dung
+  cover.style.display = 'none';
+  content.style.display = 'block';
+  // 2) cố gắng play nhạc (Android sẽ tự play, iOS yêu cầu thao tác)
+  music.play().catch(()=>{});
+});
 
-/* TẠO TIM RƠI LIÊN TỤC */
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤";
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.fontSize = (20 + Math.random() * 20) + "px";
-    document.body.appendChild(heart);
+/* music button */
+let isPlaying = false;
+musicBtn.addEventListener('click', ()=>{
+  if(!isPlaying){
+    music.play().catch(()=>{});
+    musicBtn.classList.add('on');
+    isPlaying = true;
+    musicBtn.innerText = '🔊';
+  } else {
+    music.pause();
+    musicBtn.classList.remove('on');
+    isPlaying = false;
+    musicBtn.innerText = '🎶';
+  }
+});
 
-    setTimeout(() => heart.remove(), 4000);
+/* tạo trái tim rơi liên tục */
+function spawnHeart(){
+  const el = document.createElement('div');
+  el.className = 'heart';
+  el.style.left = Math.random() * (window.innerWidth - 30) + 'px';
+  const size = 14 + Math.random()*26;
+  el.style.fontSize = size + 'px';
+  el.textContent = '❤';
+  el.style.animationDuration = (3 + Math.random()*3) + 's';
+  document.body.appendChild(el);
+  setTimeout(()=> el.remove(), 7000);
 }
-setInterval(createHeart, 300);
-</script>
+// spawn nhiều trái tim
+setInterval(spawnHeart, 300);
 
+/* small: graceful fallback if images missing: replace with background.jpg */
+document.querySelectorAll('.gallery img').forEach(img=>{
+  img.onerror = ()=>{ img.src = 'background.jpg'; img.style.objectFit='cover'; };
+});
+
+/* smooth scroll for gallery on mobile (drag) */
+let isDown=false,startX,scrollLeft;
+const gallery = document.getElementById('gallery');
+gallery.addEventListener('mousedown', (e)=>{
+  isDown=true; gallery.classList.add('active'); startX=e.pageX - gallery.offsetLeft; scrollLeft=gallery.scrollLeft;
+});
+gallery.addEventListener('mouseleave', ()=>{isDown=false; gallery.classList.remove('active');});
+gallery.addEventListener('mouseup', ()=>{isDown=false; gallery.classList.remove('active');});
+gallery.addEventListener('mousemove',(e)=>{
+  if(!isDown) return; e.preventDefault(); const x=e.pageX - gallery.offsetLeft; const walk=(x-startX)*2; gallery.scrollLeft=scrollLeft - walk;
+});
+
+/* touch support (mobile) */
+let touchStartX=0, touchScrollLeft=0;
+gallery.addEventListener('touchstart', e=>{ touchStartX = e.touches[0].pageX; touchScrollLeft = gallery.scrollLeft; });
+gallery.addEventListener('touchmove', e=>{ const dx = e.touches[0].pageX - touchStartX; gallery.scrollLeft = touchScrollLeft - dx; });
+
+</script>
 </body>
 </html>

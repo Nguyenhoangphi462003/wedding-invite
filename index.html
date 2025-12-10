@@ -2,30 +2,35 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Thiệp cưới của Hoàng Phi & Thùy Dương</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thiệp Cưới Hoàng Phi & Thùy Dương</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
     body {
         margin: 0;
         padding: 0;
-        font-family: 'Arial', sans-serif;
-        background: #ffb6d9; /* Hồng pastel */
+        font-family: "Arial", sans-serif;
         overflow-x: hidden;
+
+        /* Nền kiểu ZiuWedding */
+        background-image: url("https://i.pinimg.com/736x/8f/8d/3b/8f8d3bb7dc2f8fa12e43091ded3e95ed.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        position: relative;
     }
 
-    /* Hiệu ứng trái tim rơi */
-    .heart {
+    /* Lớp phủ hồng pastel */
+    body::before {
+        content: "";
         position: fixed;
-        top: -10px;
-        color: pink;
-        font-size: 20px;
-        animation: fall 4s linear infinite;
-        z-index: 9999;
-    }
-    @keyframes fall {
-        0% { transform: translateY(0) rotate(0); opacity: 1; }
-        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 182, 219, 0.55);
+        backdrop-filter: blur(3px);
+        z-index: -1;
     }
 
     .container {
@@ -34,49 +39,64 @@
     }
 
     h1 {
-        font-size: 32px;
-        font-weight: bold;
-        color: #ff006a;
-        animation: floatText 3s infinite ease-in-out;
+        font-size: 30px;
+        color: #ff0066;
+        animation: glow 3s infinite;
+        margin-bottom: 10px;
     }
 
-    @keyframes floatText {
-        0% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-        100% { transform: translateY(0); }
+    @keyframes glow {
+        0% { text-shadow: 0 0 5px #fff; }
+        50% { text-shadow: 0 0 20px #ff4da6; }
+        100% { text-shadow: 0 0 5px #fff; }
+    }
+
+    /* Ảnh nhỏ kiểu ZiuWedding */
+    .album img {
+        width: 85%;
+        border-radius: 18px;
+        margin: 12px 0;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        transition: 0.3s;
+    }
+    .album img:hover {
+        transform: scale(1.03);
+    }
+
+    /* Trái tim rơi */
+    .heart {
+        position: fixed;
+        top: -10px;
+        color: #ff3f9e;
+        font-size: 18px;
+        animation: fall 4s linear infinite;
+        z-index: 9999;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(0) rotate(0); opacity: 1; }
+        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
 
     /* Đếm ngược */
     #countdown {
-        font-size: 22px;
-        font-weight: bold;
-        color: #c2004e;
+        font-size: 20px;
+        color: #b30044;
         margin-top: 10px;
+        font-weight: bold;
     }
 
-    /* Album ảnh */
-    .album {
-        margin-top: 30px;
-    }
-
-    .album img {
-        width: 90%;
-        border-radius: 20px;
-        margin-bottom: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
 </style>
 </head>
 
 <body>
 
-<!-- Nhạc -->
+<!-- Nhạc Sơn Tùng -->
 <audio id="music" autoplay loop>
-    <source src="https://files.catbox.moe/4e6p1s.mp3" type="audio/mpeg">
+    <source src="https://files.catbox.moe/j876im.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-    // Tự phát nhạc trên điện thoại
     document.addEventListener("click", () => {
         document.getElementById("music").play();
     });
@@ -87,40 +107,38 @@
 function createHeart() {
     const heart = document.createElement("div");
     heart.className = "heart";
-    heart.innerHTML = "❤️";
+    heart.innerHTML = "💗";
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (20 + Math.random() * 20) + "px";
+    heart.style.fontSize = (15 + Math.random() * 20) + "px";
     document.body.appendChild(heart);
 
     setTimeout(() => heart.remove(), 4000);
 }
-setInterval(createHeart, 300);
+setInterval(createHeart, 250);
 </script>
 
 <div class="container">
-    <h1>💗 Hoàng Phi & Thùy Dương 💗</h1>
+    <h1>💞 Hoàng Phi & Thùy Dương 💞</h1>
 
     <div id="countdown"></div>
 
     <script>
-        // Đếm ngược ngày cưới
-        const weddingDate = new Date("2025-02-14"); // chỉnh ngày tại đây
+        const weddingDate = new Date("2025-02-14");
         function updateCountdown() {
             const now = new Date();
             const diff = weddingDate - now;
-
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const d = Math.floor(diff / (1000*60*60*24));
+            const h = Math.floor((diff / (1000*60*60)) % 24);
+            const m = Math.floor((diff / (1000*60)) % 60);
 
             document.getElementById("countdown").innerHTML =
-                `⏳ Còn ${days} ngày ${hours} giờ ${minutes} phút đến ngày cưới`;
+                `⏳ Chỉ còn ${d} ngày ${h} giờ ${m} phút nữa thôi!`;
         }
         setInterval(updateCountdown, 1000);
         updateCountdown();
     </script>
 
-    <h2>📸 Album của chúng mình</h2>
+    <h2 style="color:#ff0066; margin-top:25px;">📸 Album Của Chúng Mình</h2>
 
     <div class="album">
         <img src="https://raw.githubusercontent.com/Nguyenhoangphi462003/wedding-invite/main/11fa1b7f-a68c-46d9-815a-726233053f6b.jpg">

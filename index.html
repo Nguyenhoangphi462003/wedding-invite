@@ -2,75 +2,109 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Thiệp cưới Hoàng Phi - Thùy Dương</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Thiệp Cưới - Hoàng Phi ❤️ Thùy Dương</title>
 
 <style>
     body {
         margin: 0;
         padding: 0;
-        background: #ffb6d9; /* Nền màu hồng */
-        font-family: Arial, sans-serif;
+        background: #ffb6d9;
+        font-family: "Arial", sans-serif;
         overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
     }
 
-    /* NỀN ẢNH */
     #bgImage {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('https://files.catbox.moe/6n7kz9.jpg'); 
+        background-image: url('https://files.catbox.moe/6n7kz9.jpg');
         background-size: cover;
         background-position: center;
-        filter: brightness(0.65);
+        filter: brightness(0.6);
         z-index: -2;
     }
 
-    .section {
+    #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
-        min-height: 100vh;
-        padding: 60px 20px;
+        height: 100%;
+        background: rgba(255, 182, 217, 0.3);
+        backdrop-filter: blur(4px);
+        z-index: -1;
+    }
+
+    .section {
+        min-height: 90vh;
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: center;
+        align-items: center;
+        padding: 60px 20px;
         text-align: center;
-        color: white;
-        backdrop-filter: blur(3px);
+        color: #fff;
     }
 
     .title {
-        font-size: 48px;
+        font-size: 34px;
         font-weight: bold;
-        text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        margin-bottom: 10px;
+        text-shadow: 0 0 6px rgba(0,0,0,0.6);
     }
 
     .names {
-        font-size: 32px;
+        font-size: 22px;
         margin-top: 10px;
         font-weight: 600;
-        text-shadow: 0 0 6px rgba(0,0,0,0.4);
+        text-shadow: 0 0 5px rgba(0,0,0,0.4);
     }
 
-    /* Ảnh */
     .main-photo {
-        width: 300px;
-        border-radius: 16px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-        margin-top: 25px;
+        width: 85%;
+        max-width: 300px;
+        border-radius: 18px;
+        box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+        margin: 20px 0;
     }
 
-    /* Hiệu ứng xuất hiện khi cuộn */
     .fade-in {
         opacity: 0;
-        transform: translateY(40px);
-        transition: 1.2s ease-out;
+        transform: translateY(35px);
+        transition: opacity 0.9s ease-out, transform 0.9s ease-out;
     }
     .show {
         opacity: 1;
         transform: translateY(0);
+    }
+
+    /* Nút nhạc */
+    #musicBtn {
+        position: fixed;
+        bottom: 18px;
+        right: 18px;
+        background: rgba(255,255,255,0.85);
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 26px;
+        color: #ff4da6;
+        cursor: pointer;
+        z-index: 999;
+        backdrop-filter: blur(6px);
+    }
+
+    @media (max-width: 500px) {
+        .title { font-size: 30px; }
+        .names { font-size: 20px; }
     }
 </style>
 </head>
@@ -78,52 +112,76 @@
 <body>
 
 <div id="bgImage"></div>
+<div id="overlay"></div>
 
-<!-- SECTION 1 -->
 <div class="section fade-in">
     <div class="title">Thiệp Cưới</div>
     <div class="names">Hoàng Phi ❤️ Thùy Dương</div>
 </div>
 
-<!-- SECTION 2 -->
 <div class="section fade-in">
     <img class="main-photo" src="https://files.catbox.moe/6n7kz9.jpg" />
     <div class="names">Trân trọng kính mời</div>
 </div>
 
-<!-- SECTION 3 -->
 <div class="section fade-in">
     <div class="title">Lễ Thành Hôn</div>
-    <p style="max-width: 650px; font-size: 22px; line-height: 1.6;">
-        Chúng tôi hân hạnh báo tin lễ cưới của chúng tôi sẽ được tổ chức trong không khí thân mật và ấm áp.<br><br>
-        Rất mong được đón tiếp bạn trong ngày trọng đại này.
+    <p style="max-width: 320px; font-size: 18px; line-height: 1.6; text-shadow: 0 0 4px rgba(0,0,0,0.5);">
+        Chúng tôi trân trọng thông báo lễ cưới sẽ diễn ra trong không gian thân mật và ấm áp.<br><br>
+        Rất mong được đón tiếp bạn trong ngày trọng đại.
     </p>
 </div>
 
-<!-- SECTION 4 -->
 <div class="section fade-in">
     <div class="title">Thời gian & Địa điểm</div>
-    <p style="max-width: 650px; font-size: 22px; line-height: 1.6;">
+    <p style="max-width: 320px; font-size: 18px; line-height: 1.6; text-shadow: 0 0 4px rgba(0,0,0,0.5);">
         • Thời gian: 9h00 - Ngày ... Tháng ... Năm ...<br>
-        • Địa điểm: ....................................................
+        • Địa điểm: .........................................................
     </p>
 </div>
 
+<!-- NHẠC -->
+<audio id="weddingMusic" loop>
+    <source src="https://files.catbox.moe/2wnf8b.mp3" type="audio/mp3">
+</audio>
+
+<div id="musicBtn">🎶</div>
+
 <script>
-    // Hiệu ứng fade-in khi cuộn
     const faders = document.querySelectorAll('.fade-in');
 
     function showElements() {
         faders.forEach(el => {
             const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 100) {
+            if (rect.top < window.innerHeight - 80) {
                 el.classList.add('show');
             }
         });
     }
-
     window.addEventListener('scroll', showElements);
     showElements();
+
+    // Nhạc
+    const music = document.getElementById("weddingMusic");
+    const musicBtn = document.getElementById("musicBtn");
+
+    musicBtn.addEventListener("click", () => {
+        if (music.paused) {
+            music.play();
+            musicBtn.innerHTML = "🔊";
+        } else {
+            music.pause();
+            musicBtn.innerHTML = "🎶";
+        }
+    });
+
+    // Tự phát nhạc trên Android
+    document.addEventListener("DOMContentLoaded", () => {
+        const playAuto = () => {
+            music.play().catch(()=>{});
+        };
+        setTimeout(playAuto, 500);
+    });
 </script>
 
 </body>

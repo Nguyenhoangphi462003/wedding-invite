@@ -1,174 +1,129 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thiệp Cưới - Hoàng Phi & Thùy Dương</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Thiệp cưới Hoàng Phi - Thùy Dương</title>
 
+<style>
     body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      overflow: hidden;
-      font-family: 'Playfair Display', serif;
+        margin: 0;
+        padding: 0;
+        background: #ffb6d9; /* Nền màu hồng */
+        font-family: Arial, sans-serif;
+        overflow-x: hidden;
     }
 
-    /* NỀN VIDEO giống ZiuWedding */
-    #bgVideo {
-      position: fixed;
-      right: 0;
-      bottom: 0;
-      min-width: 100%;
-      min-height: 100%;
-      z-index: -2;
-      filter: brightness(0.55);
+    /* NỀN ẢNH */
+    #bgImage {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://files.catbox.moe/6n7kz9.jpg'); 
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.65);
+        z-index: -2;
     }
 
-    /* LỚP MỜ */
-    .overlay {
-      position: fixed;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.25);
-      backdrop-filter: blur(1px);
-      z-index: -1;
+    .section {
+        width: 100%;
+        min-height: 100vh;
+        padding: 60px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        backdrop-filter: blur(3px);
     }
 
-    /* PHẦN TRUNG TÂM */
-    .center-box {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      text-align: center;
-      animation: fadeIn 2s ease;
+    .title {
+        font-size: 48px;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
 
-    .center-box h1 {
-      font-size: 55px;
-      margin: 0;
-      font-family: 'Great Vibes', cursive;
-      letter-spacing: 3px;
+    .names {
+        font-size: 32px;
+        margin-top: 10px;
+        font-weight: 600;
+        text-shadow: 0 0 6px rgba(0,0,0,0.4);
     }
 
-    .center-box h2 {
-      font-size: 22px;
-      margin-top: 10px;
-      font-weight: 300;
+    /* Ảnh */
+    .main-photo {
+        width: 300px;
+        border-radius: 16px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        margin-top: 25px;
     }
 
-    .open-btn {
-      margin-top: 30px;
-      padding: 14px 32px;
-      border-radius: 30px;
-      font-size: 20px;
-      font-weight: 500;
-      background: rgba(255,255,255,0.8);
-      border: none;
-      cursor: pointer;
-      transition: .3s;
+    /* Hiệu ứng xuất hiện khi cuộn */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 1.2s ease-out;
     }
-
-    .open-btn:hover {
-      background: white;
-      transform: scale(1.05);
+    .show {
+        opacity: 1;
+        transform: translateY(0);
     }
-
-    @keyframes fadeIn {
-      0% {opacity: 0;} 100% {opacity: 1;}
-    }
-
-    /* TRÁI TIM BAY giống ZiuWedding */
-    .heart {
-      position: fixed;
-      width: 18px;
-      height: 18px;
-      background: #ff5e7e;
-      transform: rotate(45deg);
-      animation: floatUp 4s linear forwards;
-      opacity: 0.8;
-    }
-
-    .heart:before, .heart:after {
-      content: '';
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      background: #ff5e7e;
-      border-radius: 50%;
-    }
-    .heart:before { top: -9px; left: 0; }
-    .heart:after { left: -9px; top: 0; }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
-      100% { transform: translateY(-900px) rotate(45deg); opacity: 0; }
-    }
-
-    /* TRANG THIỆP BÊN TRONG */
-    #inside {
-      display: none;
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.65);
-      backdrop-filter: blur(3px);
-      color: white;
-      animation: fadeIn 1.2s ease;
-      text-align: center;
-      padding-top: 120px;
-    }
-
-    #inside h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 50px;
-      margin-bottom: 10px;
-    }
-
-  </style>
+</style>
 </head>
+
 <body>
 
-<!-- VIDEO NỀN GIỐNG ZIU -->
-<video autoplay muted loop id="bgVideo">
-  <source src="https://videos.pexels.com/video-files/854427/854427-hd_1280_720_24fps.mp4" type="video/mp4">
-</video>
+<div id="bgImage"></div>
 
-<div class="overlay"></div>
-
-<!-- TRANG BÌA -->
-<div class="center-box" id="cover">
-  <h2>Wedding Invitation</h2>
-  <h1>Hoàng Phi & Thùy Dương</h1>
-  <button class="open-btn" onclick="openInvite()">Mở thiệp</button>
+<!-- SECTION 1 -->
+<div class="section fade-in">
+    <div class="title">Thiệp Cưới</div>
+    <div class="names">Hoàng Phi ❤️ Thùy Dương</div>
 </div>
 
-<!-- TRANG NỘI DUNG -->
-<div id="inside">
-  <h2>Trân trọng kính mời</h2>
-  <p>Bạn đến dự buổi lễ thành hôn của chúng tôi</p>
-  <h1 style="font-family:'Great Vibes',cursive; font-size:60px;">Hoàng Phi & Thùy Dương</h1>
-  <p>⏰ 09:00 - 12/12/2025</p>
-  <p>📍 Hội trường Hoa Sen</p>
+<!-- SECTION 2 -->
+<div class="section fade-in">
+    <img class="main-photo" src="https://files.catbox.moe/6n7kz9.jpg" />
+    <div class="names">Trân trọng kính mời</div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section fade-in">
+    <div class="title">Lễ Thành Hôn</div>
+    <p style="max-width: 650px; font-size: 22px; line-height: 1.6;">
+        Chúng tôi hân hạnh báo tin lễ cưới của chúng tôi sẽ được tổ chức trong không khí thân mật và ấm áp.<br><br>
+        Rất mong được đón tiếp bạn trong ngày trọng đại này.
+    </p>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section fade-in">
+    <div class="title">Thời gian & Địa điểm</div>
+    <p style="max-width: 650px; font-size: 22px; line-height: 1.6;">
+        • Thời gian: 9h00 - Ngày ... Tháng ... Năm ...<br>
+        • Địa điểm: ....................................................
+    </p>
 </div>
 
 <script>
-function openInvite() {
-  document.getElementById('cover').style.display = 'none';
-  document.getElementById('inside').style.display = 'block';
-}
+    // Hiệu ứng fade-in khi cuộn
+    const faders = document.querySelectorAll('.fade-in');
 
-// HIỆU ỨNG TRÁI TIM GIỐNG ZIU WEDDING
-setInterval(() => {
-  const heart = document.createElement('div');
-  heart.classList.add('heart');
-  heart.style.left = Math.random() * window.innerWidth + 'px';
-  heart.style.bottom = '-20px';
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 4000);
-}, 300);
+    function showElements() {
+        faders.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                el.classList.add('show');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', showElements);
+    showElements();
 </script>
 
 </body>

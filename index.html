@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thiệp cưới Thùy Dương & Hoàng Phi</title>
 
-<!-- Open Graph: Hiển thị ảnh & tên khách trên link -->
+<!-- Open Graph -->
 <meta property="og:title" content="Thiệp cưới Thùy Dương & Hoàng Phi">
 <meta property="og:description" content="Trân trọng kính mời bạn đến dự lễ cưới của chúng tôi.">
-<meta property="og:image" content="thumbnail.jpg"> <!-- Thay ảnh đại diện ở đây -->
+<meta property="og:image" content="https://yourdomain.com/thumbnail.jpg">
 <meta property="og:type" content="website">
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -21,6 +21,7 @@ body,html{height:100%;overflow-x:hidden;background:#fef6f0;}
 .welcome{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;color:#333;text-align:center;animation:fadeIn 2s ease;}
 .welcome h1{font-family:'Great Vibes',cursive;font-size:4em;}
 .welcome h2{font-size:2em;margin:10px 0;}
+#guest-name{font-size:1.5em;margin-top:10px;color:#ff5e7e;}
 #enter-btn{margin-top:20px;padding:10px 30px;font-size:1em;cursor:pointer;background:#ff5e7e;color:#fff;border:none;border-radius:50px;transition:0.3s;}
 #enter-btn:hover{background:#ff7e9e;}
 .main-content{display:none;color:#333;text-align:center;padding:50px 20px;animation:fadeIn 2s ease forwards;position:relative;z-index:1;}
@@ -44,6 +45,7 @@ body,html{height:100%;overflow-x:hidden;background:#fef6f0;}
 .social{margin-top:50px;display:flex;justify-content:center;gap:30px;}
 .social a{display:inline-block;width:50px;height:50px;}
 .social img{width:100%;height:100%;object-fit:contain;}
+.music-btn{position:fixed;top:20px;right:20px;width:50px;height:50px;cursor:pointer;z-index:10;}
 @media(max-width:768px){.details{flex-direction:column;}.gallery-item{width:80%;}}
 </style>
 </head>
@@ -55,12 +57,18 @@ body,html{height:100%;overflow-x:hidden;background:#fef6f0;}
     <div class="overlay"></div>
 </div>
 
-<audio id="bg-music" src="wedding.mp3" autoplay loop></audio>
+<!-- Nhạc nền welcome -->
+<audio id="bg-music1" src="wedding.mp3" autoplay loop></audio>
+<!-- Nhạc nền khi mở thiệp -->
+<audio id="bg-music2" src="wedding2.mp3" loop></audio>
+
+<!-- Nút bật/tắt nhạc -->
+<img src="sound-on.png" alt="Music" id="music-btn" class="music-btn">
 
 <div class="welcome" id="welcome">
     <h1>Thiệp cưới</h1>
     <h2>Thùy Dương & Hoàng Phi</h2>
-    <p id="guest-name"></p> <!-- Tên khách sẽ hiển thị ở đây -->
+    <p id="guest-name"></p>
     <button id="enter-btn">Mở thiệp</button>
 </div>
 
@@ -74,7 +82,7 @@ body,html{height:100%;overflow-x:hidden;background:#fef6f0;}
     <section class="details">
         <div class="detail-item">
             <h2>Thời gian</h2>
-            <p>10:00 sáng, ngày 01/01/2026</p>
+            <p>10:00 sáng, ngày 20/01/2026</p>
         </div>
         <div class="detail-item">
             <h2>Địa điểm</h2>
@@ -83,7 +91,7 @@ body,html{height:100%;overflow-x:hidden;background:#fef6f0;}
     </section>
 
     <section class="gallery">
-        <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nguyenhoangphi462003/wedding-invite/main/95667064-9bb6-4078-8922-92452c14380e.jpg" alt="Ảnh kỷ niệm"></div>
+ <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nguyenhoangphi462003/wedding-invite/main/95667064-9bb6-4078-8922-92452c14380e.jpg" alt="Ảnh kỷ niệm"></div>
         <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nguyenhoangphi462003/wedding-invite/main/95667064-9bb6-4078-8922-92452c14380e.jpg" alt="Ảnh kỷ niệm"></div>
         <div class="gallery-item"><img src="https://raw.githubusercontent.com/Nguyenhoangphi462003/wedding-invite/main/95667064-9bb6-4078-8922-92452c14380e.jpg" alt="Ảnh kỷ niệm"></div>
     </section>
@@ -98,7 +106,7 @@ body,html{height:100%;overflow-x:hidden;background:#fef6f0;}
     </section>
 
     <section class="social">
-        <a href="https://www.facebook.com/hphi46.203" target="_blank"><img src="zalo.png" alt="Zalo"></a>
+       <a href="https://www.facebook.com/hphi46.203" target="_blank"><img src="zalo.png" alt="Zalo"></a>
         <a href="https://www.facebook.com/hphi46.203" target="_blank"><img src="fb.png" alt="Facebook"></a>
     </section>
 </div>
@@ -118,11 +126,14 @@ if(guestName){
 const enterBtn = document.getElementById('enter-btn');
 const welcome = document.getElementById('welcome');
 const mainContent = document.getElementById('main-content');
-const bgMusic = document.getElementById('bg-music');
+const bgMusic1 = document.getElementById('bg-music1');
+const bgMusic2 = document.getElementById('bg-music2');
 enterBtn.addEventListener('click', ()=>{
     welcome.style.display='none';
     mainContent.style.display='block';
-    bgMusic.play();
+    // Chuyển nhạc
+    bgMusic1.pause();
+    bgMusic2.play();
 });
 
 // Countdown
@@ -155,6 +166,19 @@ for(let i=0;i<numPetals;i++){
     petal.style.opacity=0.5+Math.random()*0.5;
     document.body.appendChild(petal);
 }
+
+// Nút bật/tắt nhạc
+const musicBtn = document.getElementById('music-btn');
+let musicPlaying = true; // true = nhạc thứ 2 đang chạy
+musicBtn.addEventListener('click', ()=>{
+    if(bgMusic2.paused){
+        bgMusic2.play();
+        musicBtn.src = 'sound-on.png';
+    } else {
+        bgMusic2.pause();
+        musicBtn.src = 'sound-off.png';
+    }
+});
 </script>
 </body>
 </html>

@@ -2,186 +2,147 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<title>Thiệp Cưới - Hoàng Phi ❤️ Thùy Dương</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Thiệp cưới Hoàng Phi ❤️ Thùy Dương</title>
 
 <style>
     body {
         margin: 0;
         padding: 0;
-        background: #ffb6d9;
-        font-family: "Arial", sans-serif;
         overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-    }
-
-    #bgImage {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url('https://files.catbox.moe/6n7kz9.jpg');
+        font-family: 'Arial', sans-serif;
         background-size: cover;
         background-position: center;
-        filter: brightness(0.6);
-        z-index: -2;
+        background-attachment: fixed;
+        background-image: url('YOUR_BACKGROUND_IMAGE.jpg'); /* ← Thay ảnh nền */
     }
 
-    #overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
+    /* LỚP LÀM TỐI NỀN CHO ĐẸP */
+    .overlay {
+        background: rgba(255, 182, 193, 0.25);
+        backdrop-filter: blur(2px);
         width: 100%;
         height: 100%;
-        background: rgba(255, 182, 217, 0.3);
-        backdrop-filter: blur(4px);
-        z-index: -1;
+        position: fixed;
+        z-index: 1;
+        top: 0; left: 0;
     }
 
-    .section {
-        min-height: 90vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 60px 20px;
-        text-align: center;
-        color: #fff;
-    }
-
+    /* TIÊU ĐỀ TRUNG TÂM */
     .title {
-        font-size: 34px;
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding-top: 60px;
+        color: #ff2e76;
+        font-size: 38px;
         font-weight: bold;
-        margin-bottom: 10px;
-        text-shadow: 0 0 6px rgba(0,0,0,0.6);
+        text-shadow: 0 0 10px white;
     }
 
-    .names {
-        font-size: 22px;
-        margin-top: 10px;
-        font-weight: 600;
-        text-shadow: 0 0 5px rgba(0,0,0,0.4);
+    /* GALERRY ẢNH CƯỚI */
+    .gallery {
+        margin-top: 40px;
+        display: flex;
+        gap: 20px;
+        overflow-x: scroll;
+        padding: 20px;
+        scroll-snap-type: x mandatory;
+        z-index: 2;
+        position: relative;
+    }
+    .gallery img {
+        width: 280px;
+        height: 380px;
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: 0 0 10px #ff4fa8;
+        scroll-snap-align: center;
     }
 
-    .main-photo {
-        width: 85%;
-        max-width: 300px;
-        border-radius: 18px;
-        box-shadow: 0 6px 25px rgba(0,0,0,0.4);
-        margin: 20px 0;
+    /* TIM RƠI */
+    .heart {
+        position: fixed;
+        top: -10px;
+        color: #ff2e76;
+        font-size: 20px;
+        animation: fall 4s linear infinite;
+        z-index: 3;
+    }
+    @keyframes fall {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
 
-    .fade-in {
-        opacity: 0;
-        transform: translateY(35px);
-        transition: opacity 0.9s ease-out, transform 0.9s ease-out;
-    }
-    .show {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    /* Nút nhạc */
+    /* NÚT PHÁT NHẠC */
     #musicBtn {
         position: fixed;
-        bottom: 18px;
-        right: 18px;
-        background: rgba(255,255,255,0.85);
-        width: 55px;
-        height: 55px;
-        border-radius: 50%;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 26px;
-        color: #ff4da6;
-        cursor: pointer;
-        z-index: 999;
-        backdrop-filter: blur(6px);
+        bottom: 20px;
+        right: 20px;
+        padding: 14px 18px;
+        background: #ff70b8;
+        border-radius: 50px;
+        color: white;
+        font-size: 18px;
+        border: none;
+        z-index: 5;
+        box-shadow: 0 0 10px white;
     }
 
-    @media (max-width: 500px) {
-        .title { font-size: 30px; }
-        .names { font-size: 20px; }
-    }
 </style>
 </head>
-
 <body>
 
-<div id="bgImage"></div>
-<div id="overlay"></div>
+<div class="overlay"></div>
 
-<div class="section fade-in">
-    <div class="title">Thiệp Cưới</div>
-    <div class="names">Hoàng Phi ❤️ Thùy Dương</div>
+<h1 class="title">💗 Hoàng Phi & Thùy Dương 💗</h1>
+
+<!-- 5 ẢNH CƯỚI (THAY LINK ẢNH Ở ĐÂY) -->
+<div class="gallery">
+    <img src="https://i.imgur.com/8b1WQ4E.jpeg">
+    <img src="https://i.imgur.com/IR3M3Am.jpeg">
+    <img src="https://i.imgur.com/1YcIngO.jpeg">
+    <img src="https://i.imgur.com/kE5zWcY.jpeg">
+    <img src="https://i.imgur.com/7rQbV3z.jpeg">
 </div>
 
-<div class="section fade-in">
-    <img class="main-photo" src="https://files.catbox.moe/6n7kz9.jpg" />
-    <div class="names">Trân trọng kính mời</div>
-</div>
-
-<div class="section fade-in">
-    <div class="title">Lễ Thành Hôn</div>
-    <p style="max-width: 320px; font-size: 18px; line-height: 1.6; text-shadow: 0 0 4px rgba(0,0,0,0.5);">
-        Chúng tôi trân trọng thông báo lễ cưới sẽ diễn ra trong không gian thân mật và ấm áp.<br><br>
-        Rất mong được đón tiếp bạn trong ngày trọng đại.
-    </p>
-</div>
-
-<div class="section fade-in">
-    <div class="title">Thời gian & Địa điểm</div>
-    <p style="max-width: 320px; font-size: 18px; line-height: 1.6; text-shadow: 0 0 4px rgba(0,0,0,0.5);">
-        • Thời gian: 9h00 - Ngày ... Tháng ... Năm ...<br>
-        • Địa điểm: .........................................................
-    </p>
-</div>
-
-<!-- NHẠC -->
-<audio id="weddingMusic" loop>
-    <source src="https://files.catbox.moe/2wnf8b.mp3" type="audio/mp3">
+<!-- NHẠC ĐÁM CƯỚI -->
+<audio id="bgm" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6f258f7d73.mp3" type="audio/mpeg">
 </audio>
 
-<div id="musicBtn">🎶</div>
+<button id="musicBtn">🎵 Play</button>
 
 <script>
-    const faders = document.querySelectorAll('.fade-in');
+/* PHÁT / TẮT NHẠC */
+let music = document.getElementById("bgm");
+let btn = document.getElementById("musicBtn");
+let playing = false;
 
-    function showElements() {
-        faders.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 80) {
-                el.classList.add('show');
-            }
-        });
+btn.onclick = function () {
+    if (!playing) {
+        music.play();
+        btn.innerText = "⏸ Pause";
+        playing = true;
+    } else {
+        music.pause();
+        btn.innerText = "🎵 Play";
+        playing = false;
     }
-    window.addEventListener('scroll', showElements);
-    showElements();
+};
 
-    // Nhạc
-    const music = document.getElementById("weddingMusic");
-    const musicBtn = document.getElementById("musicBtn");
+/* TẠO TIM RƠI LIÊN TỤC */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.fontSize = (20 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
 
-    musicBtn.addEventListener("click", () => {
-        if (music.paused) {
-            music.play();
-            musicBtn.innerHTML = "🔊";
-        } else {
-            music.pause();
-            musicBtn.innerHTML = "🎶";
-        }
-    });
-
-    // Tự phát nhạc trên Android
-    document.addEventListener("DOMContentLoaded", () => {
-        const playAuto = () => {
-            music.play().catch(()=>{});
-        };
-        setTimeout(playAuto, 500);
-    });
+    setTimeout(() => heart.remove(), 4000);
+}
+setInterval(createHeart, 300);
 </script>
 
 </body>

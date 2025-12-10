@@ -2,249 +2,135 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
+<title>Thiệp cưới của Hoàng Phi & Thùy Dương</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Invitation</title>
 
 <style>
     body {
         margin: 0;
-        font-family: "Arial", sans-serif;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        background: #ffb6d9; /* Hồng pastel */
         overflow-x: hidden;
-        background: #ffd6e8; /* Hồng pastel */
     }
 
-    /* ----- Background Hero ----- */
-    .hero {
-        height: 100vh;
-        background-image: url('https://placekitten.com/900/1400');
-        background-size: cover;
-        background-position: center;
-        position: relative;
-        text-align: center;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 20px;
-        animation: fadeIn 1.5s ease-out;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: scale(1.05); }
-        to { opacity: 1; transform: scale(1); }
-    }
-
-    /* ----- TEXT BAY ----- */
-    .flying-text {
-        font-size: 30px;
-        font-weight: bold;
-        animation: fly 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes fly {
-        from { transform: translateY(0px); opacity: 1; }
-        to { transform: translateY(-15px); opacity: 0.7; }
-    }
-
-    /* ----- COUNTDOWN ----- */
-    .countdown-box {
-        background: rgba(255, 240, 250, 0.7);
-        padding: 20px;
-        border-radius: 15px;
-        backdrop-filter: blur(5px);
-        width: 80%;
-        margin: 20px auto;
-        color: #ff2f87;
-        font-weight: bold;
-    }
-
-    .countdown {
-        font-size: 28px;
-        display: flex;
-        justify-content: space-around;
-        text-align: center;
-    }
-
-    .count-item {
-        animation: pop 0.8s ease;
-    }
-
-    @keyframes pop {
-        from { transform: scale(0.7); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
-    }
-
-    /* ----- Heart Rain ----- */
+    /* Hiệu ứng trái tim rơi */
     .heart {
         position: fixed;
         top: -10px;
-        color: #ff4d88;
+        color: pink;
         font-size: 20px;
         animation: fall 4s linear infinite;
-        opacity: 0.8;
-        z-index: 100;
+        z-index: 9999;
     }
-
     @keyframes fall {
-        to {
-            transform: translateY(110vh) rotate(360deg);
-            opacity: 0;
-        }
+        0% { transform: translateY(0) rotate(0); opacity: 1; }
+        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
 
-    /* ----- Section ----- */
-    .section {
-        padding: 40px 20px;
+    .container {
         text-align: center;
-        color: #ff2f87;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 32px;
         font-weight: bold;
-        animation: fadeScroll 1s ease-out;
+        color: #ff006a;
+        animation: floatText 3s infinite ease-in-out;
     }
 
-    @keyframes fadeScroll {
-        from { opacity: 0; transform: translateY(40px); }
-        to { opacity: 1; transform: translateY(0); }
+    @keyframes floatText {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0); }
     }
 
-    /* ----- Slider ----- */
-    .slider {
+    /* Đếm ngược */
+    #countdown {
+        font-size: 22px;
+        font-weight: bold;
+        color: #c2004e;
+        margin-top: 10px;
+    }
+
+    /* Album ảnh */
+    .album {
+        margin-top: 30px;
+    }
+
+    .album img {
         width: 90%;
-        margin: auto;
-        overflow: hidden;
-        border-radius: 15px;
-        box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
-    }
-
-    .slides {
-        display: flex;
-        width: 500%;
-        animation: slide 12s infinite;
-    }
-
-    .slides img {
-        width: 100%;
-        border-radius: 15px;
-    }
-
-    @keyframes slide {
-        0% { transform: translateX(0); }
-        20% { transform: translateX(0); }
-        25% { transform: translateX(-100%); }
-        45% { transform: translateX(-100%); }
-        50% { transform: translateX(-200%); }
-        70% { transform: translateX(-200%); }
-        75% { transform: translateX(-300%); }
-        95% { transform: translateX(-300%); }
-        100% { transform: translateX(-400%); }
-    }
-
-    /* ----- Music Button ----- */
-    .music-btn {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: #ff4d88;
-        color: white;
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 25px;
-        cursor: pointer;
-        z-index: 200;
-        box-shadow: 0 0 10px #ff80b3;
-        animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.12); }
-        100% { transform: scale(1); }
+        border-radius: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 </style>
 </head>
 
 <body>
 
-<!-- HEART RAIN -->
-<script>
-    function createHeart() {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerHTML = "❤";
-        heart.style.left = Math.random()*100 + "vw";
-        heart.style.fontSize = (Math.random()*10 + 15) + "px";
-        heart.style.animationDuration = (Math.random()*3 + 2) + "s";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 4000);
-    }
-    setInterval(createHeart, 300);
-</script>
-
-<!-- HERO -->
-<div class="hero">
-    <div class="flying-text">Thiệp cưới Hoàng Phi ❤️ Thùy Dương</div>
-</div>
-
-<!-- COUNTDOWN -->
-<div class="countdown-box">
-    <h2>🌸 Còn lại đến ngày cưới 🌸</h2>
-    <div class="countdown" id="countdown">
-        <div class="count-item" id="days">0<br><small>Ngày</small></div>
-        <div class="count-item" id="hours">0<br><small>Giờ</small></div>
-        <div class="count-item" id="minutes">0<br><small>Phút</small></div>
-        <div class="count-item" id="seconds">0<br><small>Giây</small></div>
-    </div>
-</div>
-
-<script>
-    const weddingDate = new Date("2026-01-01 12:00:00").getTime();
-
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = weddingDate - now;
-
-        document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24)) + "<br><small>Ngày</small>";
-        document.getElementById("hours").innerHTML = Math.floor((distance / (1000 * 60 * 60)) % 24) + "<br><small>Giờ</small>";
-        document.getElementById("minutes").innerHTML = Math.floor((distance / (1000 * 60)) % 60) + "<br><small>Phút</small>";
-        document.getElementById("seconds").innerHTML = Math.floor((distance / 1000) % 60) + "<br><small>Giây</small>";
-    }
-
-    setInterval(updateCountdown, 1000);
-</script>
-
-<!-- PHOTO SLIDER -->
-<div class="section">
-    <h2>Album ảnh</h2>
-    <div class="slider">
-        <div class="slides">
-            <img src="https://placekitten.com/900/1200">
-            <img src="https://placekitten.com/901/1200">
-            <img src="https://placekitten.com/902/1200">
-            <img src="https://placekitten.com/903/1200">
-            <img src="https://placekitten.com/904/1200">
-        </div>
-    </div>
-</div>
-
-<!-- MUSIC -->
-<audio id="bgMusic" loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+<!-- Nhạc -->
+<audio id="music" autoplay loop>
+    <source src="https://files.catbox.moe/4e6p1s.mp3" type="audio/mpeg">
 </audio>
 
-<div class="music-btn" onclick="toggleMusic()">🎵</div>
-
 <script>
-    const music = document.getElementById("bgMusic");
-    let playing = false;
-
-    function toggleMusic() {
-        playing ? music.pause() : music.play();
-        playing = !playing;
-    }
+    // Tự phát nhạc trên điện thoại
+    document.addEventListener("click", () => {
+        document.getElementById("music").play();
+    });
 </script>
+
+<!-- Trái tim rơi -->
+<script>
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (20 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 4000);
+}
+setInterval(createHeart, 300);
+</script>
+
+<div class="container">
+    <h1>💗 Hoàng Phi & Thùy Dương 💗</h1>
+
+    <div id="countdown"></div>
+
+    <script>
+        // Đếm ngược ngày cưới
+        const weddingDate = new Date("2025-02-14"); // chỉnh ngày tại đây
+        function updateCountdown() {
+            const now = new Date();
+            const diff = weddingDate - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+            document.getElementById("countdown").innerHTML =
+                `⏳ Còn ${days} ngày ${hours} giờ ${minutes} phút đến ngày cưới`;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+
+    <h2>📸 Album của chúng mình</h2>
+
+    <div class="album">
+        <img src="https://raw.githubusercontent.com/Nguyenhoangphi462003/wedding-invite/main/11fa1b7f-a68c-46d9-815a-726233053f6b.jpg">
+        <img src="https://raw.githubusercontent.com/Nguyenhoangphi462003/wedding-invite/main/33854839-73fb-43c8-aad6-c639b245b34c.jpg">
+        <img src="https://raw.githubusercontent.com/Nguyenhoangphi462003/wedding-invite/main/95667064-9bb6-4078-8922-92452c14380e.jpg">
+        <img src="https://raw.githubusercontent.com/Nguyenhoangphi462003/wedding-invite/main/e8d6ede1-1be5-4499-b27b-3ed61dac3559.jpg">
+        <img src="https://raw.githubusercontent.com/Nguyenhoangphi462003/wedding-invite/main/f6465a5b-8946-49b2-8171-17c29438395b.jpg">
+    </div>
+
+</div>
 
 </body>
 </html>
